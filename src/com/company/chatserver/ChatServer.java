@@ -64,10 +64,11 @@ public class ChatServer {
             try    {
                 while(true)   {
                     msg = input.readLine();
-                    if ( msg.equals("end") ) {
+                    if ( msg.equals("EXIT") ) {
                     clients.remove(this);
                     users.remove(name);
-                        break;
+
+                    break;
                     }
                     broadcast(name,msg); // method  of outer class - send messages to all
                 } // end of while

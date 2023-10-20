@@ -13,7 +13,7 @@ public class ClientRPC {
         PrintWriter printWriter = new PrintWriter(outputStream,true);
         BufferedReader receivedRead  = new BufferedReader(new InputStreamReader(inputStream));
         String receiveMessage;
-
+        System.out.println("RPC Available =>");
         while(true){
             System.out.println("1.add 2.subtract 3.echo 4.exit");
             String input = bufferedReader.readLine();

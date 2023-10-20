@@ -15,7 +15,22 @@ public class ChatClient {
         System.out.println("Enter your name:");
         output.println(input.readLine());
         System.out.println("Connected to server..TYPE 'EXIT' TO LEAVE");
-        String receivedMsg = "";
+        final String[] receivedMsg = new String[1];
+
+
+        //Thread to receive msg from chat server
+        new Thread(() -> {  // runnable as lambda expression
+            try {
+                if((receivedMsg[0] =received.readLine()) != null){
+                    System.out.println(receivedMsg[0]);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+
+        //main Thread will take care of input msg that needed to be sent on server
         while(true){
             String in = input.readLine();
             if(in.equals("EXIT")){
@@ -24,11 +39,10 @@ public class ChatClient {
 
                 break;
             }
+
             output.println(in);
 
-            if((receivedMsg=received.readLine()) != null){
-                System.out.println(receivedMsg);
-            }
+
         }
 
 

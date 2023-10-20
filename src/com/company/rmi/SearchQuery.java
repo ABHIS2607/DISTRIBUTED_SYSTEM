@@ -19,11 +19,20 @@ public class SearchQuery extends UnicastRemoteObject
     public String query(String search)
             throws RemoteException
     {
-        String result;
-        if (search.equals("HI"))
+        String result = "";
+        if (search.equals("HI")){
+            System.out.println("Received:HI");
+            System.out.println("Generated method result:BYE");
             result = "Hello";
-        else
+        }
+            
+        else{
+            System.out.println("RMI Request:"+search);
+            System.out.println("Generated method result:BYE");
+
             result = "Bye";
+        }
+           
 
         return result;
     }

@@ -22,7 +22,7 @@ public class ServerRPC {
         while(true){
             String str = receiveRead.readLine();
             if (str != null) {
-                System.out.println("Called Procedure : " + str);
+                System.out.println("Called RPC : " + str);
             }
 
             switch(str){
@@ -31,25 +31,25 @@ public class ServerRPC {
                     String echoableStr = receiveRead.readLine();
                     out=echo(echoableStr);
                     pwrite.println(out);
-                    System.out.println("Output of Procedure:"+echoableStr);
+                    System.out.println("Output of RPC:"+echoableStr);
                     break;
                 case "add":
                     a = Integer.parseInt(receiveRead.readLine());
                     b = Integer.parseInt(receiveRead.readLine());
                     out=add(a,b);
                     pwrite.println(out);
-                    System.out.println("Output of Procedure:"+out);
+                    System.out.println("Output of RPC:"+out);
                     break;
                 case "subtract":
                      a = Integer.parseInt(receiveRead.readLine());
                      b = Integer.parseInt(receiveRead.readLine());
                     out=sub(a,b);
                     pwrite.println(out);
-                    System.out.println("Output of Procedure:"+out);
+                    System.out.println("Output of RPC:"+out);
                     break;
 
                 default:
-                    System.out.println("Undefined method: " + str);
+                    System.out.println("Undefined RPC: " + str);
                     break;
 
             }
