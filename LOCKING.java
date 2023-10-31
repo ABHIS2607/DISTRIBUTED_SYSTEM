@@ -25,7 +25,7 @@ class SharedResource {
         try {
             // Introduce some delay to increase the likelihood of contention
             Thread.sleep(100);
-            
+
             count++;
             System.out.println("Thread " + Thread.currentThread().getId() + " incremented the count to: " + count);
         } finally {
@@ -34,14 +34,14 @@ class SharedResource {
     }
 }
 
-public class LockingTest {
+public class LOCKING {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of threads: ");
+        System.out.print("Number of threads: ");
         int numThreads = scanner.nextInt();
 
-        System.out.print("Enter the increment count: ");
+        System.out.print("Increment count: ");
         int incrementCount = scanner.nextInt();
 
         SharedResource sharedResource = new SharedResource();

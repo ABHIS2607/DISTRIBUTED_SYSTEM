@@ -1,19 +1,23 @@
 import java.util.Scanner;
+
 class AtomicInt {
     private int value;
 
     public AtomicInt(int initialValue) {
         this.value = initialValue;
     }
+
     public synchronized int fetchAdd(int increment) {
         int oldValue = value;
         value += increment;
         return oldValue;
     }
+
     public synchronized int load() {
         return value;
     }
 }
+
 class Mutex {
     private int state;
 
@@ -32,6 +36,7 @@ class Mutex {
         state = 0;
     }
 }
+
 public class LamportBakeryAlgorithm {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -39,12 +44,14 @@ public class LamportBakeryAlgorithm {
     private static int[] ticket;
     private static boolean[] choosing;
     private static Mutex coutMutex;
+
     private static void initialize(int numThreads) {
         ticketCounter = new AtomicInt(0);
         ticket = new int[numThreads];
         choosing = new boolean[numThreads];
         coutMutex = new Mutex();
     }
+
     private static void lock(int threadId) {
         synchronized (coutMutex) {
             choosing[threadId] = true;
@@ -63,7 +70,8 @@ public class LamportBakeryAlgorithm {
 
             while (true) {
                 synchronized (coutMutex) {
-                    if (!(ticket[i] != 0 && (ticket[i] < ticket[threadId] || (ticket[i] == ticket[threadId] && i < threadId)))) {
+                    if (!(ticket[i] != 0
+                            && (ticket[i] < ticket[threadId] || (ticket[i] == ticket[threadId] && i < threadId)))) {
                         break;
                     }
                 }
@@ -80,16 +88,15 @@ public class LamportBakeryAlgorithm {
     private static void criticalSection(int threadId) {
         synchronized (coutMutex) {
             System.out.println("Thread " + threadId + " enters the critical section.");
-        }
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        synchronized (coutMutex) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("Thread " + threadId + " exits the critical section.");
         }
+
     }
 
     private static void threadFunction(int threadId) {
@@ -106,7 +113,7 @@ public class LamportBakeryAlgorithm {
     }
 
     public static void main(String[] args) {
-        System.out.print("Enter the number of threads: ");
+        System.out.print("Number of threads: ");
         int numThreads = scanner.nextInt();
 
         initialize(numThreads);

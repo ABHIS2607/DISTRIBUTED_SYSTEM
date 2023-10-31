@@ -1,8 +1,10 @@
 import java.util.Scanner;
-public class LamportLogicalClock {
+
+public class Lamport {
     static int max(int a, int b) {
         return (a > b) ? a : b;
     }
+
     static void display(int[] p1, int[] p2) {
         System.out.println("\nThe time stamps of events in P1:");
         for (int timestamp : p1) {
@@ -14,6 +16,7 @@ public class LamportLogicalClock {
             System.out.print(timestamp + " ");
         }
     }
+
     static void lamportLogicalClock(int[][] depMatrix) {
         int e1 = depMatrix.length;
         int e2 = depMatrix[0].length;
@@ -55,15 +58,15 @@ public class LamportLogicalClock {
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the number of events in P1: ");
+        System.out.print("Number of events in Process 1 - ");
         int e1 = scanner.nextInt();
 
-        System.out.print("Enter the number of events in P2: ");
+        System.out.print("Number of events in Process 2 -");
         int e2 = scanner.nextInt();
 
         int[][] depMatrix = new int[e1][e2];
 
-        System.out.println("Enter the dependency matrix:");
+        System.out.println("Dependency matrix:");
         for (int i = 0; i < e1; i++) {
             for (int j = 0; j < e2; j++) {
                 depMatrix[i][j] = scanner.nextInt();
